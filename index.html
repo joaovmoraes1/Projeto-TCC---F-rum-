@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CoopQuest Fórum - Engenharia de Software UEPA Castanhal</title>
+    <title>CoopQuest Fórum</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 </head>
 <body>
     <div id="app">
@@ -14,12 +14,16 @@
                 <div class="logo">
                     <img src="coopquest-logo.png" alt="CoopQuest Fórum" id="logo">
                 </div>
-                <div class="nav-links">
-                    <a href="#" class="nav-item"><i class="fas fa-home"></i> Início</a>
-                    <a href="#" class="nav-item"><i class="fas fa-gamepad"></i> Jogos</a>
-                    <a href="#" class="nav-item"><i class="fas fa-users"></i> Comunidade</a>
-                    <a href="#" class="nav-item"><i class="fas fa-question-circle"></i> Ajuda</a>
+                <div class="nav-section"> 
+                    <a href="#" class="nav-item" data-page="home"><i class="fas fa-home"></i> Início</a>
+                    <a href="#" class="nav-item" data-page="games"><i class="fas fa-gamepad"></i> Jogos</a>
+                    <a href="#" class="nav-item" data-page="community"><i class="fas fa-users"></i> Comunidade</a>
+                    <a href="#" class="nav-item" data-page="help"><i class="fas fa-question-circle"></i> Ajuda</a>
                 </div>
+                <div id="search-form">
+                    <input type="text" placeholder="Buscar no fórum..." class="search-bar">
+                    <i class="fa fa-search"></i> 
+                  </div>
                 <div class="user-actions">
                     <button id="login-btn">Entrar</button>
                     <button id="register-btn">Registrar</button>
@@ -27,63 +31,12 @@
             </nav>
         </header>
 
-        <main>
-            <h1>Bem-vindo ao Fórum CoopQuest</h1>
-            
-            <div class="content">
-                <div class="left-column">
-                    <section class="card topics">
-                        <h2>Tópicos Recentes</h2>
-                        <ul id="recent-topics">
-                            <!-- Tópicos serão adicionados dinamicamente via JavaScript -->
-                        </ul>
-                        <button id="load-more-topics">Carregar Mais</button>
-                    </section>
-
-                    <section class="card new-topic">
-                        <h2>Criar Novo Tópico</h2>
-                        <form id="new-topic-form">
-                            <input type="text" id="topic-title" placeholder="Título do Tópico" required>
-                            <textarea id="topic-content" placeholder="Conteúdo do Tópico" required></textarea>
-                            <button type="submit">Criar Tópico</button>
-                        </form>
-                    </section>
-                </div>
-
-                <div class="right-column">
-                    <section class="card stats">
-                        <h2>Estatísticas do Fórum</h2>
-                        <p>Tópicos: <span id="topic-count">0</span></p>
-                        <p>Respostas: <span id="reply-count">0</span></p>
-                        <p>Membros: <span id="member-count">0</span></p>
-                    </section>
-
-                    <section class="card online-members">
-                        <h2>Membros Online</h2>
-                        <ul id="online-members-list">
-                            <!-- Membros online serão adicionados dinamicamente via JavaScript -->
-                        </ul>
-                    </section>
-
-                    <section class="card challenge">
-                        <h2>Desafio do Dia</h2>
-                        <p id="daily-challenge">Carregando desafio...</p>
-                        <button id="participate-challenge">Participar</button>
-                    </section>
-
-                    <section class="card search">
-                        <h2>Pesquisar</h2>
-                        <form id="search-form">
-                            <input type="text" id="search-input" placeholder="Buscar no fórum...">
-                            <button type="submit">Buscar</button>
-                        </form>
-                    </section>
-                </div>
-            </div>
+        <main id="main-content-inner"> 
+            <!-- O conteúdo das páginas será inserido aqui dinamicamente pelo JavaScript -->
         </main>
 
         <footer>
-            <p>&copy; 2023 CoopQuest - Engenharia de Software UEPA Castanhal</p>
+            <p>© 2023 CoopQuest - Engenharia de Software UEPA Castanhal</p>
         </footer>
     </div>
 
@@ -93,8 +46,8 @@
             <span class="close">&times;</span>
             <h2>Login</h2>
             <form id="login-form">
-                <input type="email" placeholder="E-mail" required>
-                <input type="password" placeholder="Senha" required>
+                <input type="email" id="login-email" placeholder="E-mail" required>
+                <input type="password" id="login-password" placeholder="Senha" required>
                 <button type="submit">Entrar</button>
             </form>
         </div>
@@ -106,10 +59,15 @@
             <span class="close">&times;</span>
             <h2>Registro</h2>
             <form id="register-form">
-                <input type="text" placeholder="Nome" required>
-                <input type="email" placeholder="E-mail" required>
-                <input type="password" placeholder="Senha" required>
-                <input type="password" placeholder="Confirmar Senha" required>
+                <input type="text" id="register-name" placeholder="Nome completo" required>
+                <input type="email" id="register-email" placeholder="E-mail" required>
+                <input type="password" id="register-password" placeholder="Senha" required>
+                <input type="password" id="register-confirm-password" placeholder="Confirmar senha" required>
+                <select id="register-user-type" required>
+                    <option value="">Selecione o tipo de usuário</option>
+                    <option value="student">Aluno</option>
+                    <option value="teacher">Professor</option>
+                </select>
                 <button type="submit">Registrar</button>
             </form>
         </div>
